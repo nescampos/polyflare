@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@section Header {
+    <header>
+		<h2>My Wallet</h2>
+	</header>
+	<p>Check your balance and tokens in Polygon Network</p>
+	<ul class="actions">
+		<li><a href="@Url.Action("Transactions","Wallet")" class="button">See transactions</a></li>
+        <li><a href="@Url.Action("CreateTransaction","Wallet")" class="button">Create transaction</a></li>
+		<li><a href="@Url.Action("Pools","Wallet")" class="button">Check pools</a></li>
+	</ul>
+}
+
+
+<div class="wrapper">
+	<div class="container" id="main">
+		<div class="row gtr-150">
+			<div class="col-8 col-12-narrower">
+
+				<!-- Content -->
+					<article id="content">
+						<header>
+							<h2>My tokens</h2>
+							<p>Check all the tokens you have in your wallet. <br />
+							Account: <span id="publicKey"></span></p>
+						</header>
+						
+						<p class="tokenList">
+
+						</p>
+					</article>
+
+			</div>
+			<div class="col-4 col-12-narrower">
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+						<section>
+							<header>
+								<h3>MATIC Balance</h3>
+							</header>
+							<p><span id="klayBalanceAccount"></span> <b>MATIC</b></p>
+						</section>
+										
+					</section>
+
+			</div>
+		</div>
+						
+	</div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var publicKey = localStorage.getItem('publicKey');
+        if(publicKey == null) {
+            location.href = "/Home/Login";
+			
+        }
+        else
+        {
+            getBalances();
+			$('#publicKey').text(publicKey);
+        }
+
+    </script>
+}

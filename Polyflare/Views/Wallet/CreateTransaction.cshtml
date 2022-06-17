@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@section Header {
+    <header>
+		<h2>Create new transaction</h2>
+	</header>
+	<p>Send MATIC</p>
+	<ul class="actions">
+		<li><a href="@Url.Action("Index","Wallet")" class="button">See my balance</a></li>
+        <li><a href="@Url.Action("Transactions","Wallet")" class="button">See transactions</a></li>
+		<li><a href="@Url.Action("Pools","Wallet")" class="button">Check pools</a></li>
+	</ul>
+}
+
+<br /><br /><br />
+	<div class="row">
+		<div class="col-2">
+			<p><br /></p>
+		</div>
+		<div class="col-3">
+			Address: 
+		</div>
+		<div class="col-6">
+			<p><input type="text" class="form-control" id="trx_address" /></p>
+		</div>
+	</div>
+	<br /><br />
+	<div class="row">
+		<div class="col-2">
+			<p><br /></p>
+		</div>
+		<div class="col-3">
+			Amount (MATIC): 
+		</div>
+		<div class="col-6">
+			<p><input type="text" class="form-control" id="trx_amount" /></p>
+			
+		</div>
+	</div>
+	<br /><br />
+	<div class="row">
+		<div class="col-2">
+			<p><br /></p>
+		</div>
+		<div class="col-3">
+			Password: 
+		</div>
+		<div class="col-6">
+			<p><input type="password" class="form-control" id="password" /></p>
+			
+		</div>
+	</div>
+	<br /><br />
+	<div class="row">
+		<div class="col-2">
+			<p><br /></p>
+		</div>
+		<div class="col-3">
+			<p><br /></p>
+		</div>
+		<div class="col-6">
+			<p><input type="button" value="Send" class="btn-primary button" onclick="sendTransaction()" /></p>
+			
+		</div>
+	</div>	
+	<div class="row">
+		<div class="col-2">
+			<p><br /></p>
+		</div>
+		<div class="col-3">
+			<p></p>
+		</div>
+		<div class="col-6">
+			<p class="alert alert-warning" id="errorTrx"></p>
+		</div>
+	</div>
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var publicKey = localStorage.getItem('publicKey');
+        if(publicKey == null) {
+            location.href = "/Home/Login";
+        }
+    </script>
+}

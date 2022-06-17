@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Header {
+    <header>
+		<h2>Pools</h2>
+	</header>
+	<p>Check pools available in decentralized exchanges</p>
+	<ul class="actions">
+		<li><a href="@Url.Action("Index","Wallet")" class="button">See my balance</a></li>
+        <li><a href="@Url.Action("Transactions","Wallet")" class="button">See transactions</a></li>
+        <li><a href="@Url.Action("CreateTransaction","Wallet")" class="button">Create transaction</a></li>
+	</ul>
+}
+
+<div class="wrapper">
+	<div class="container" id="main">
+		<div class="row gtr-0">
+            <div class="col-6"><a href="#" id="filterpools">Filter only my pools</a> <a href="#" id="showpools">Show all pools</a> <br /> </div>
+            <br />
+                <table class="table thead-light table-striped table-borderless table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">DEX Name</th>
+                            <th scope="col">Token 1</th>
+                            <th scope="col">Token 2</th>
+                            <th scope="col">Total Liquidity</th>
+                            <th scope="col">Block Height</th>
+                            <th scope="col">APY</th>
+                        </tr>
+                        </thead>
+                    <tbody id="tbody_pools">
+                        <tr>
+                            <th colspan="6">
+                            Loading pools
+                        </th>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+		</div>
+						
+	</div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var publicKey = localStorage.getItem('publicKey');
+        if(publicKey == null) {
+            location.href = "/Home/Login";
+        }
+        else
+        {
+            getXYKPools('quickswap');
+            getXYKPools('sushiswap');
+        }
+
+        $('#filterpools').click(function() {
+            getXYKPoolsByAddress('quickswap');
+            getXYKPoolsByAddress('sushiswap');
+            return false;
+        });
+        $('#showpools').click(function() {
+            renderTable();
+            return false;
+        });
+
+
+    </script>
+}

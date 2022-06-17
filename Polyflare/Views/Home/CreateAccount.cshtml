@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@section Header {
+    <header>
+		<h2>Register</h2>
+	</header>
+	<p>Create your account</p>
+	<ul class="actions">
+		<li><a href="@Url.Action("Login","Home")" class="button">Login</a></li>
+	</ul>
+}
+
+<div class="row">
+    <div class="col-2">
+        <p><br /></p>
+
+    </div>
+    <div class="col-9">
+
+        <br /><br />
+        <input type="button" class="btn btn-primary" value="Create new account" id="createAccountBtn" /> <br />
+
+        <p>
+            Public Key: <span class="newAccountPublicKey"></span> <br />
+            Private Key: <span class="newAccountPrivateKey"></span> <br />
+        </p>
+        <p class="text-primary" id="confirmText"  style="display:none;">
+            Save your public and private key in a safe place, create a password and confirm your new account. <br />
+            Password: <input type="password" class="newpassWord form-control" />
+        </p>
+        <input type="button" class="btn btn-success" value="Confirm new account" style="display:none;" id="confirmAccountBtn" /> <br />
+
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var publicKey = localStorage.getItem('publicKey');
+        if(publicKey != null) {
+            location.href = "/Wallet/Index";
+        }
+
+        $('#createAccountBtn').click(function() {
+            createNewAccount();
+            $('#confirmText').css('display','block');
+            $('#confirmAccountBtn').css('display','block');
+        });
+        $('#confirmAccountBtn').click(function() {
+            confirmNewAccount();
+        });
+    </script>
+}

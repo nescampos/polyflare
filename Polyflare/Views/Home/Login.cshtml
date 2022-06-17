@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@section Header {
+    <header>
+		<h2>Login</h2>
+	</header>
+	<p>Login to your account</p>
+	<ul class="actions">
+		<li><a href="@Url.Action("CreateAccount","Home")" class="button">Create account</a></li>
+	</ul>
+}
+
+
+<div class="row">
+    <div class="col-1">
+       <br />
+
+    </div>
+    <div class="col-5">
+        <b>If you already have a Polyflare account, just enter your password</b>
+        <br /><br />
+
+        <p>
+            Password: <input type="password" class="password form-control" /> <br />
+        </p>
+        <input type="button" class="btn btn-success" value="Login" id="loginBtn" /> <br />
+
+    </div>
+    <div class="col-5">
+
+        <b>Register existing account </b>
+        <br /><br />
+        <p>
+            Private Key: <input type="text" class="privateKeyAccount form-control" /> <br />
+            Password: <input type="password" class="newPassword form-control" /> <br />
+        </p>
+        <input type="button" class="btn btn-success" value="Register account" id="loginExistingBtn" /> <br />
+
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var publicKey = localStorage.getItem('publicKey');
+        if(publicKey != null) {
+            location.href = "/Wallet/Index";
+        }
+
+        $('#loginBtn').click(function() {
+            var privateKey = $('.password').val();
+            if(privateKey == '') {
+                alert('Enter your password for login')
+            }
+            else {
+                login();
+            }
+        });
+        $('#loginExistingBtn').click(function() {
+            var privateKey = $('.privateKeyAccount').val();
+            var newPassword = $('.newPassword').val();
+            if(privateKey == '') {
+                alert('Enter your private key and a new password for login')
+            }
+            else {
+                loginExistingAccount();
+            }
+        });
+    </script>
+}
