@@ -15,7 +15,7 @@ $(function () {
     }
 })
 
-var covalentAPI = 'ckey_a9de425855fe4560bc13d245d07';
+var covalentAPI = 'covalentAPI';
 
 var web3 = new Web3(new Web3.providers.HttpProvider("https://polygon-rpc.com"));
 
